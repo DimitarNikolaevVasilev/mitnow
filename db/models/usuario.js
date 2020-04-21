@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     idUsuario: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     email: {
       type: DataTypes.STRING(100),
@@ -22,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     pass: {
       type: DataTypes.STRING(200),
-      allowNull: true
+      allowNull: false
     },
     descripcion: {
       type: DataTypes.STRING(255),

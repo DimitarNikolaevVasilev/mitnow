@@ -2,24 +2,23 @@ const sec = require('../util/sec');
 const errors = require('../util/errors');
 
 const { models } = require('../db/db');
+const EmailService = require('./EmailService');
 
 module.exports = {
 	async register(data){
-		if(await this.emailExists(data.email))throw new errors.UnprocessableEntity("email taken");
-
 		let hash = await sec.hashPassword({pw: data.password});
-		
-		await models.usuario.create({
-			email: data.email,
-			pass: hash
-		});
-	},
-	async emailExists(email){
-		return await models.usuario.count({
-			where: {email: email}
-		});
-	},
 
+		return await models.usuario.findOrCreate({
+			where: {email: data.email},
+			defaults: {
+				email: data.email,
+				pass: hash
+			}
+		}).spread(async (user, created) => {
+			if(!created)throw new errors.UnprocessableEntity("email taken");
+			await EmailService.sendConfirmationEmail(user);
+		});
+	},
 	async standardLogin(username_email, password){
 		const error_msg = "user or password incorrect";
 
@@ -35,7 +34,6 @@ module.exports = {
 			salt: hashParts[1],
 			iter: +hashParts[2]
 		});
-
 
 		if(hash !== user.hash)throw new errors.NotAuthorizedError(error_msg);
 

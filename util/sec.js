@@ -1,8 +1,8 @@
-var Promise = require('bluebird');
-var tools = require('./tools');
-var jwt = Promise.promisifyAll(require('jsonwebtoken'));
-var fs = Promise.promisifyAll(require('fs'));
-var crypto = Promise.promisifyAll(require('crypto'));
+let Promise = require('bluebird');
+let tools = require('./tools');
+let jwt = Promise.promisifyAll(require('jsonwebtoken'));
+let fs = Promise.promisifyAll(require('fs'));
+let crypto = Promise.promisifyAll(require('crypto'));
 
 
 

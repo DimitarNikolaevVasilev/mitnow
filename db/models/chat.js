@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     idChat: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     fechaCreacion: {
       type: DataTypes.DATEONLY,

@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     idFotoPerfil: {
       type: DataTypes.INTEGER(11).UNSIGNED,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     idUsuario: {
       type: DataTypes.INTEGER(11),

@@ -6,7 +6,6 @@ const fastify = require('fastify')({
 });
 
 
-
 fastify.setErrorHandler((err, req, reply) => {
 	console.log(err);
 
@@ -21,6 +20,7 @@ fastify.register(require('fastify-cors'), {
 fastify.register(require('fastify-cookie'), {
 	secret: 'my-secret'
 });
+
 
 // Faltan componentes como static, caching, sec headers, rate y balance limit...
 // A lo mejor agregar websocket ? Para chat?

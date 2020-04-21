@@ -1,27 +1,22 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('multimedia', {
-    idMultimedia: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
+  return sequelize.define('verificacionemail', {
     idUsuario: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
+      primaryKey: true,
       references: {
         model: 'usuario',
         key: 'idUsuario'
       }
     },
-    rutaFoto: {
-      type: DataTypes.STRING(50),
-      allowNull: true
+    token: {
+      type: DataTypes.STRING(16),
+      allowNull: false
     }
   }, {
-    tableName: 'multimedia',
+    tableName: 'verificacionemail',
     timestamps: false
   });
 };
